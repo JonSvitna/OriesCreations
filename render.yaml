@@ -1,7 +1,8 @@
 # Static Site (FREE) - For portfolio/showcase only
 # Note: Backend features (auth, cart, payments) will not work with static hosting
-staticSites:
-  - name: oriescreations
+services:
+  - type: static
+    name: oriescreations
     buildCommand: npm install && npm run build:client
     staticPublishPath: ./client/dist
     headers:
