@@ -116,10 +116,10 @@ function renderHomePage(container) {
       <div class="max-w-7xl w-full">
         <div class="text-center mb-16">
           <h1 class="text-5xl md:text-7xl font-bold mb-6 float" style="font-family: 'Cinzel', serif; color: #d4af37; text-shadow: 0 0 40px rgba(212, 175, 55, 0.4);">
-            Choose Your Path
+            Ories's Creations
           </h1>
           <p class="text-xl md:text-2xl mb-4 text-neutral-300">
-            Where will your adventure lead you, traveler?
+            Welcome! I make one of a kind art, no two creations are the same
           </p>
           <div class="flex items-center justify-center gap-4 text-sm text-neutral-500">
             <span>⚔️ Original Fantasy Art</span>
@@ -147,10 +147,10 @@ function renderHomePage(container) {
             </div>
             <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
               <h2 class="text-3xl font-bold mb-3" style="font-family: 'Cinzel', serif; color: #d4af37; text-shadow: 0 2px 10px rgba(0,0,0,1);">
-                The Gallery
+                My Portfolio
               </h2>
               <p class="text-neutral-200 mb-4 text-shadow-lg" style="text-shadow: 0 2px 8px rgba(0,0,0,1);">
-                Explore original fantasy artwork, premium prints, and legendary merchandise crafted for adventurers.
+                Explore unique art including Altia, The Forest, Cosmic Insects, and fan art. Each piece is one-of-a-kind.
               </p>
               <div class="flex items-center text-yellow-500 font-semibold group-hover:translate-x-2 transition-transform">
                 <span>Enter the Gallery</span>
@@ -180,10 +180,10 @@ function renderHomePage(container) {
             </div>
             <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
               <h2 class="text-3xl font-bold mb-3" style="font-family: 'Cinzel', serif; color: #dc2626; text-shadow: 0 2px 10px rgba(0,0,0,1);">
-                The Forge
+                Commissions
               </h2>
               <p class="text-neutral-200 mb-4" style="text-shadow: 0 2px 8px rgba(0,0,0,1);">
-                Commission custom artwork for your D&D character, original creation, or epic vision brought to life.
+                Commission unique, one-of-a-kind artwork. Bring your characters, stories, and visions to life.
               </p>
               <div class="flex items-center text-red-500 font-semibold group-hover:translate-x-2 transition-transform">
                 <span>Request a Commission</span>
@@ -213,10 +213,10 @@ function renderHomePage(container) {
             </div>
             <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
               <h2 class="text-3xl font-bold mb-3" style="font-family: 'Cinzel', serif; color: #e5e5e5; text-shadow: 0 2px 10px rgba(0,0,0,1);">
-                The Guild
+                Shop
               </h2>
               <p class="text-neutral-200 mb-4" style="text-shadow: 0 2px 8px rgba(0,0,0,1);">
-                Join the patron's guild for exclusive artwork, early access, special discounts, and behind-the-scenes content.
+                Browse available art pieces and prints. Support the creation of more one-of-a-kind artwork.
               </p>
               <div class="flex items-center text-neutral-300 font-semibold group-hover:translate-x-2 transition-transform">
                 <span>Join the Guild</span>
@@ -300,6 +300,25 @@ function renderHomePage(container) {
         </div>
       </div>
     </section>
+
+    <!-- Contact & Social -->
+    <footer class="py-12 px-4 bg-neutral-950/50">
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="text-lg mb-4 text-neutral-300">
+          Contact: <a href="mailto:OriesCreations@gmail.com" class="text-gold-400 hover:text-gold-300 transition-colors">OriesCreations@gmail.com</a>
+        </p>
+        <div class="flex justify-center gap-6 mb-6">
+          <a href="#" class="text-neutral-400 hover:text-gold-400 transition-colors text-sm">TikTok</a>
+          <span class="text-neutral-700">•</span>
+          <a href="#" class="text-neutral-400 hover:text-gold-400 transition-colors text-sm">Instagram</a>
+          <span class="text-neutral-700">•</span>
+          <a href="#" class="text-neutral-400 hover:text-gold-400 transition-colors text-sm">Youtube</a>
+          <span class="text-neutral-700">•</span>
+          <a href="#" class="text-neutral-400 hover:text-gold-400 transition-colors text-sm">Snapchat</a>
+        </div>
+        <p class="text-sm text-neutral-500">&copy; 2024 Ories's Creations. All rights reserved.</p>
+      </div>
+    </footer>
   `;
   
   // Load featured products
