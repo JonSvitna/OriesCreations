@@ -107,34 +107,34 @@ router.post('/checkout', authenticateToken, (req, res) => {
     const userId = req.user.id;
     const { shipping_address, payment_intent_id } = req.body;
 
-    // Get cart items
-    const cartItems = db.prepare(`
-      SELECT c.*, p.price, p.inventory_count, p.name
-      FROM cart c
-      JOIN products p ON c.product_id = p.id
-      WHERE c.user_id = ?
-    `).all(userId);
-
-    if (cartItems.length === 0) {
-      return res.status(400).json({ error: 'Cart is empty' });
-    }
-
-    // Validate inventory for all items
-    for (const item of cartItems) {
-      if (item.quantity > item.inventory_count) {
-        return res.status(400).json({ 
-          error: `Insufficient inventory for ${item.name}`,
-          product_id: item.product_id,
-          available: item.inventory_count
-        });
-      }
-    }
-
-    // Calculate total
-    const totalAmount = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-    // Use transaction
+    // Use transaction for atomic operation
     const createOrder = db.transaction(() => {
+      // Get cart items with fresh inventory data inside transaction
+      const cartItems = db.prepare(`
+        SELECT c.*, p.price, p.inventory_count, p.name
+        FROM cart c
+        JOIN products p ON c.product_id = p.id
+        WHERE c.user_id = ?
+      `).all(userId);
+
+      if (cartItems.length === 0) {
+        throw new Error('Cart is empty');
+      }
+
+      // Validate inventory for all items inside transaction
+      for (const item of cartItems) {
+        if (item.quantity > item.inventory_count) {
+          const error = new Error(`Insufficient inventory for ${item.name}`);
+          error.type = 'INVENTORY_ERROR';
+          error.product_id = item.product_id;
+          error.available = item.inventory_count;
+          throw error;
+        }
+      }
+
+      // Calculate total
+      const totalAmount = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
       // Create order
       const orderResult = db.prepare(`
         INSERT INTO orders (user_id, total_amount, status, shipping_address, payment_intent_id)
@@ -168,7 +168,22 @@ router.post('/checkout', authenticateToken, (req, res) => {
       return orderId;
     });
 
-    const orderId = createOrder();
+    let orderId;
+    try {
+      orderId = createOrder();
+    } catch (txError) {
+      if (txError.message === 'Cart is empty') {
+        return res.status(400).json({ error: 'Cart is empty' });
+      }
+      if (txError.type === 'INVENTORY_ERROR') {
+        return res.status(400).json({ 
+          error: txError.message,
+          product_id: txError.product_id,
+          available: txError.available
+        });
+      }
+      throw txError;
+    }
 
     // Get created order
     const order = db.prepare('SELECT * FROM orders WHERE id = ?').get(orderId);

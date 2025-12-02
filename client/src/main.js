@@ -318,10 +318,10 @@ function renderProductCard(product) {
   return `
     <article class="card-fantasy product-card overflow-hidden" role="article">
       <div class="aspect-square bg-gray-800 relative overflow-hidden">
-        <img src="${product.image_url || '/images/placeholder.jpg'}" 
+        <img src="${product.image_url || '/images/placeholder.svg'}" 
              alt="${product.name}" 
              class="w-full h-full object-cover"
-             onerror="this.src='/images/placeholder.jpg'">
+             onerror="this.src='/images/placeholder.svg'">
         ${product.featured ? '<span class="badge-gold absolute top-2 right-2">Featured</span>' : ''}
         ${product.inventory_count < 10 && product.inventory_count > 0 ? '<span class="absolute top-2 left-2 text-xs bg-red-600 text-white px-2 py-1 rounded">Low Stock</span>' : ''}
         ${product.inventory_count === 0 ? '<span class="absolute top-2 left-2 text-xs bg-gray-600 text-white px-2 py-1 rounded">Out of Stock</span>' : ''}
@@ -387,10 +387,10 @@ async function openProductModal(productId) {
     content.innerHTML = `
       <div class="grid md:grid-cols-2 gap-8">
         <div class="aspect-square bg-gray-800 rounded overflow-hidden">
-          <img src="${product.image_url || '/images/placeholder.jpg'}" 
+          <img src="${product.image_url || '/images/placeholder.svg'}" 
                alt="${product.name}" 
                class="w-full h-full object-cover"
-               onerror="this.src='/images/placeholder.jpg'">
+               onerror="this.src='/images/placeholder.svg'">
         </div>
         <div>
           <span class="badge-gold">${product.category}</span>
@@ -509,7 +509,7 @@ function updateCartUI() {
     cartItems.innerHTML = state.cart.items.map(item => `
       <div class="flex gap-4 mb-4 pb-4 border-b border-yellow-900/30">
         <div class="w-20 h-20 bg-gray-800 rounded overflow-hidden flex-shrink-0">
-          <img src="${item.image_url || '/images/placeholder.jpg'}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.src='/images/placeholder.jpg'">
+          <img src="${item.image_url || '/images/placeholder.svg'}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.src='/images/placeholder.svg'">
         </div>
         <div class="flex-1">
           <h4 class="font-bold text-sm mb-1">${item.name}</h4>

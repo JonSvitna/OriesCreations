@@ -22,10 +22,6 @@ export default {
         fantasy: ['Cinzel', 'serif'],
         body: ['Lora', 'serif'],
       },
-      backgroundImage: {
-        'parchment': "url('/images/parchment-bg.jpg')",
-        'castle': "url('/images/castle-bg.jpg')",
-      },
       animation: {
         'glow': 'glow 2s ease-in-out infinite alternate',
         'float': 'float 3s ease-in-out infinite',

@@ -2,10 +2,10 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
 export default defineConfig({
-  root: resolve(__dirname, 'client'),
+  root: '.',
   base: '/',
   build: {
-    outDir: resolve(__dirname, 'client/dist'),
+    outDir: 'dist',
     emptyOutDir: true,
   },
   server: {
@@ -19,7 +19,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'client/src')
+      '@': resolve(__dirname, 'src')
     }
   }
 });
