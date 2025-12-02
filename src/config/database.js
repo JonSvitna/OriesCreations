@@ -3,10 +3,26 @@ const path = require('path');
 const fs = require('fs');
 
 // Determine data directory based on environment
-// Render mounts persistent disk at /data
+// Render mounts persistent disk at /data (if configured)
 let dataDir;
+
 if (process.env.RENDER && process.env.NODE_ENV === 'production') {
-  dataDir = '/data';
+  // Check if /data directory exists and is writable (persistent disk mounted)
+  try {
+    if (fs.existsSync('/data')) {
+      fs.accessSync('/data', fs.constants.W_OK);
+      dataDir = '/data';
+      console.log('Using Render persistent disk: /data');
+    } else {
+      // Disk not mounted yet, use project directory
+      dataDir = path.join(__dirname, '..', '..', 'data');
+      console.log('Persistent disk not mounted, using project directory');
+    }
+  } catch (err) {
+    // Can't write to /data, use project directory
+    dataDir = path.join(__dirname, '..', '..', 'data');
+    console.log('Cannot write to /data, using project directory');
+  }
 } else {
   dataDir = path.join(__dirname, '..', '..', 'data');
 }
