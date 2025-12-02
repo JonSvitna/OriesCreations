@@ -111,22 +111,136 @@ function navigateTo(page, filter = null) {
 // Home Page
 function renderHomePage(container) {
   container.innerHTML = `
-    <!-- Hero Section -->
-    <section class="hero-fantasy min-h-screen flex items-center justify-center text-center px-4">
-      <div class="max-w-4xl">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6 float" style="text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);">
-          Welcome, Adventurer
-        </h1>
-        <p class="text-xl md:text-2xl text-gray-300 mb-8">
-          Discover unique fantasy artwork, prints, and merchandise inspired by the realms of imagination.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button onclick="navigateTo('shop')" class="btn-fantasy text-lg">
-            Browse the Shop
-          </button>
-          <button onclick="navigateTo('lore')" class="btn-secondary text-lg">
-            Explore the Lore
-          </button>
+    <!-- Hero Section - Choose Your Adventure -->
+    <section class="min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-b from-black via-red-950/20 to-black">
+      <div class="max-w-7xl w-full">
+        <div class="text-center mb-16">
+          <h1 class="text-5xl md:text-7xl font-bold mb-6 float" style="font-family: 'Cinzel', serif; color: #d4af37; text-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 80px rgba(139, 0, 0, 0.4);">
+            Choose Your Path
+          </h1>
+          <p class="text-xl md:text-2xl mb-4" style="color: #e8e8e8;">
+            Where will your adventure lead you, traveler?
+          </p>
+          <div class="flex items-center justify-center gap-4 text-sm text-gray-400">
+            <span>⚔️ Original Fantasy Art</span>
+            <span>•</span>
+            <span>🛡️ Epic Merchandise</span>
+            <span>•</span>
+            <span>✨ Commission Your Legend</span>
+          </div>
+        </div>
+
+        <!-- Three Adventure Cards -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <!-- Path 1: The Gallery (Shop) -->
+          <article class="group relative overflow-hidden rounded-lg border-2 border-yellow-600/30 hover:border-yellow-500 transition-all duration-500 cursor-pointer transform hover:scale-105 hover:shadow-2xl hover:shadow-yellow-600/20"
+                   onclick="navigateTo('shop')"
+                   style="background: linear-gradient(135deg, #1a1a1a 0%, #2a0a0a 100%);">
+            <div class="aspect-[3/4] relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 z-10"></div>
+              <div class="absolute inset-0 bg-red-900/20 group-hover:bg-yellow-600/10 transition-colors duration-500"></div>
+              <!-- Placeholder for image -->
+              <div class="absolute inset-0 flex items-center justify-center text-8xl opacity-20 group-hover:opacity-30 transition-opacity">
+                🎨
+              </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
+              <h2 class="text-3xl font-bold mb-3" style="font-family: 'Cinzel', serif; color: #d4af37; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">
+                The Gallery
+              </h2>
+              <p class="text-white mb-4 text-shadow-lg" style="text-shadow: 0 2px 8px rgba(0,0,0,0.9);">
+                Explore original fantasy artwork, premium prints, and legendary merchandise crafted for adventurers.
+              </p>
+              <div class="flex items-center text-yellow-400 font-semibold group-hover:translate-x-2 transition-transform">
+                <span>Enter the Gallery</span>
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </div>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="text-xs px-2 py-1 bg-yellow-600/20 border border-yellow-600/40 rounded text-yellow-300">Art Prints</span>
+                <span class="text-xs px-2 py-1 bg-yellow-600/20 border border-yellow-600/40 rounded text-yellow-300">Merchandise</span>
+                <span class="text-xs px-2 py-1 bg-yellow-600/20 border border-yellow-600/40 rounded text-yellow-300">Digital Art</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Path 2: The Commission Hall -->
+          <article class="group relative overflow-hidden rounded-lg border-2 border-red-600/30 hover:border-red-500 transition-all duration-500 cursor-pointer transform hover:scale-105 hover:shadow-2xl hover:shadow-red-600/20"
+                   onclick="navigateTo('shop', 'Commissions')"
+                   style="background: linear-gradient(135deg, #1a1a1a 0%, #2a0a0a 100%);">
+            <div class="aspect-[3/4] relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 z-10"></div>
+              <div class="absolute inset-0 bg-red-900/30 group-hover:bg-red-600/10 transition-colors duration-500"></div>
+              <!-- Placeholder for image -->
+              <div class="absolute inset-0 flex items-center justify-center text-8xl opacity-20 group-hover:opacity-30 transition-opacity">
+                ⚔️
+              </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
+              <h2 class="text-3xl font-bold mb-3" style="font-family: 'Cinzel', serif; color: #dc2626; text-shadow: 0 2px 10px rgba(0,0,0,0.8), 0 0 20px rgba(220, 38, 38, 0.4);">
+                The Forge
+              </h2>
+              <p class="text-white mb-4" style="text-shadow: 0 2px 8px rgba(0,0,0,0.9);">
+                Commission custom artwork for your D&D character, original creation, or epic vision brought to life.
+              </p>
+              <div class="flex items-center text-red-400 font-semibold group-hover:translate-x-2 transition-transform">
+                <span>Request a Commission</span>
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </div>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="text-xs px-2 py-1 bg-red-600/20 border border-red-600/40 rounded text-red-300">Custom Characters</span>
+                <span class="text-xs px-2 py-1 bg-red-600/20 border border-red-600/40 rounded text-red-300">Portraits</span>
+                <span class="text-xs px-2 py-1 bg-red-600/20 border border-red-600/40 rounded text-red-300">Scenes</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Path 3: The Guild Hall (Membership) -->
+          <article class="group relative overflow-hidden rounded-lg border-2 border-white/30 hover:border-white transition-all duration-500 cursor-pointer transform hover:scale-105 hover:shadow-2xl hover:shadow-white/20"
+                   onclick="navigateTo('membership')"
+                   style="background: linear-gradient(135deg, #1a1a1a 0%, #0a0a2a 100%);">
+            <div class="aspect-[3/4] relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 z-10"></div>
+              <div class="absolute inset-0 bg-purple-900/20 group-hover:bg-white/10 transition-colors duration-500"></div>
+              <!-- Placeholder for image -->
+              <div class="absolute inset-0 flex items-center justify-center text-8xl opacity-20 group-hover:opacity-30 transition-opacity">
+                👑
+              </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
+              <h2 class="text-3xl font-bold mb-3" style="font-family: 'Cinzel', serif; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.8), 0 0 20px rgba(255, 255, 255, 0.3);">
+                The Guild
+              </h2>
+              <p class="text-white mb-4" style="text-shadow: 0 2px 8px rgba(0,0,0,0.9);">
+                Join the patron's guild for exclusive artwork, early access, special discounts, and behind-the-scenes content.
+              </p>
+              <div class="flex items-center text-white font-semibold group-hover:translate-x-2 transition-transform">
+                <span>Join the Guild</span>
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </div>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="text-xs px-2 py-1 bg-white/20 border border-white/40 rounded text-white">Exclusive Art</span>
+                <span class="text-xs px-2 py-1 bg-white/20 border border-white/40 rounded text-white">Discounts</span>
+                <span class="text-xs px-2 py-1 bg-white/20 border border-white/40 rounded text-white">Early Access</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- SEO Content Below -->
+        <div class="mt-16 text-center max-w-4xl mx-auto">
+          <p class="text-gray-400 text-sm leading-relaxed">
+            OriesCreations offers premium fantasy art prints, original digital artwork, custom character commissions for D&D and tabletop RPGs, 
+            medieval-inspired merchandise, and exclusive patron memberships. Browse our collection of dragon art, warrior illustrations, 
+            enchanted forest scenes, and epic battle artwork perfect for fantasy enthusiasts, dungeon masters, and collectors.
+          </p>
         </div>
       </div>
     </section>
