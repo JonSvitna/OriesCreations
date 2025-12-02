@@ -4,7 +4,7 @@ services:
     name: oriescreations-api
     runtime: node
     buildCommand: npm install && npm run build:client
-    startCommand: npm run seed && npm start
+    startCommand: ./start.sh
     envVars:
       - key: NODE_ENV
         value: production

@@ -7,6 +7,17 @@ async function seedDatabase() {
   // Initialize schema first
   initializeDatabase();
 
+  // Check if database is already seeded
+  const userCount = db.prepare('SELECT COUNT(*) as count FROM users').get();
+  const productCount = db.prepare('SELECT COUNT(*) as count FROM products').get();
+  
+  if (userCount.count > 0 && productCount.count > 0) {
+    console.log('✓ Database already seeded, skipping...');
+    console.log(`  - ${userCount.count} users`);
+    console.log(`  - ${productCount.count} products`);
+    return;
+  }
+
   // Create admin user
   const adminPassword = await bcrypt.hash('admin123', 10);
   try {
