@@ -1,0 +1,20 @@
+{
+  "name": "oriescreations",
+  "version": "1.0.0",
+  "description": "Artist website with user management/billing/marketing",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js"
+  },
+  "keywords": [
+    "artist",
+    "website",
+    "portfolio"
+  ],
+  "author": "OriesCreations",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
