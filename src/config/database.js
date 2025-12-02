@@ -2,8 +2,16 @@ const Database = require('better-sqlite3');
 const path = require('path');
 const fs = require('fs');
 
+// Determine data directory based on environment
+// Render mounts persistent disk at /data
+let dataDir;
+if (process.env.RENDER && process.env.NODE_ENV === 'production') {
+  dataDir = '/data';
+} else {
+  dataDir = path.join(__dirname, '..', '..', 'data');
+}
+
 // Ensure data directory exists
-const dataDir = path.join(__dirname, '..', '..', 'data');
 if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
 }

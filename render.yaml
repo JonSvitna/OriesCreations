@@ -1,15 +1,37 @@
-# Static Site (FREE) - For portfolio/showcase only
-# Note: Backend features (auth, cart, payments) will not work with static hosting
 services:
-  - type: static
-    name: oriescreations
+  # Backend Web Service (Node.js + SQLite) - Free tier available
+  - type: web
+    name: oriescreations-api
+    runtime: node
     buildCommand: npm install && npm run build:client
-    staticPublishPath: ./client/dist
-    headers:
-      - path: /*
-        name: Cache-Control
-        value: public, max-age=31536000
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: STRIPE_SECRET_KEY
+        sync: false
+    healthCheckPath: /api/health
+    autoDeploy: true
+    disk:
+      name: oriescreations-db
+      mountPath: /data
+      sizeGB: 1
+    
+  # Static Site (FREE) - Frontend only (optional, or use backend to serve)
+  # Uncomment if you want separate frontend hosting
+  # - type: static
+  #   name: oriescreations-frontend
+  #   buildCommand: npm install && npm run build:client
+  #   staticPublishPath: ./client/dist
+  #   headers:
+  #     - path: /*
+  #       name: Cache-Control
+  #       value: public, max-age=31536000
+  #   routes:
+  #     - type: rewrite
+  #       source: /*
+  #       destination: /index.html
