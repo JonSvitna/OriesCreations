@@ -1,5 +1,49 @@
 # OriesCreations - Deployment Guide
 
+## Quick Start: Deploy Static Site (FREE)
+
+### Step 1: Connect to Render
+
+1. **Go to Render Dashboard:** https://dashboard.render.com
+2. **Sign up/Login:** Use GitHub for easiest setup
+3. **Click:** "New +" → "Blueprint"
+4. **Connect Repository:** 
+   - Click "Connect a repository"
+   - Authorize Render to access GitHub
+   - Select `JonSvitna/OriesCreations`
+5. **Deploy:** 
+   - Render auto-detects `render.yaml`
+   - Review configuration
+   - Click "Apply" to deploy
+6. **Wait:** 3-5 minutes for first deployment
+7. **Access:** Your site will be at `https://oriescreations.onrender.com`
+
+### Current render.yaml Configuration
+
+```yaml
+staticSites:
+  - name: oriescreations
+    buildCommand: npm install && npm run build:client
+    staticPublishPath: ./client/dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=31536000
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+```
+
+**What This Deploys:**
+- ✅ Frontend portfolio/showcase (FREE)
+- ✅ Auto-deploy on push to main branch
+- ✅ Free SSL certificate (HTTPS)
+- ✅ Global CDN distribution
+- ⚠️ Backend features NOT active (auth, cart, orders, payments)
+
+---
+
 ## Current Setup: Static Site Only
 
 Your frontend is deployed as a **free static site** on Render. Backend features (auth, cart, orders, payments) are not active on the static site.
@@ -220,13 +264,63 @@ sqlite3 data/oriescreations.db ".backup backup.db"
 pg_dump $DATABASE_URL > backup.sql
 ```
 
-## Next Steps
+## Troubleshooting Static Site Deployment
 
-1. **Now:** Keep using static site for portfolio showcase
-2. **Phase 1:** Deploy backend with SQLite when ready for auth/cart
-3. **Phase 2:** Migrate to PostgreSQL when scaling up
-4. **Phase 3:** Add Redis for sessions/caching (optional)
+### Build Fails with "vite: command not found"
+**Solution:** Vite is in devDependencies - this is correct. Render installs all dependencies by default.
+
+### Build Succeeds but Site Shows 404
+**Check:**
+- Build command created `client/dist` folder
+- `staticPublishPath` is set to `./client/dist`
+- Rewrite rule redirects to `/index.html`
+
+### Images Not Loading
+**Solution:** 
+- Images in `client/public/images/` are copied during build
+- Check Vite config references public directory correctly
+
+### Build Takes Too Long
+**Expected:** First build: 3-5 minutes. Subsequent builds: 1-2 minutes with caching.
+
+### Auto-Deploy Not Working
+**Check:**
+- Render has GitHub webhook access
+- Pushing to correct branch (main)
+- Review deploy logs in Render dashboard
 
 ---
 
-**You're all set for development! Deploy when you're ready.** 🚀
+## Viewing Your Deployment
+
+### Render Dashboard
+- **Logs:** View build and deploy logs
+- **Settings:** Configure domain, environment variables
+- **Metrics:** Monitor traffic and performance
+- **Custom Domain:** Add your own domain (free)
+
+### Your Live Site
+- **URL:** `https://oriescreations.onrender.com`
+- **SSL:** Automatic HTTPS
+- **CDN:** Global edge caching
+- **Updates:** Auto-deploy on git push
+
+---
+
+## Next Steps
+
+1. **Now:** Deploy static site for portfolio showcase (FREE)
+2. **Phase 1:** Test static site - verify all pages work
+3. **Phase 2:** Deploy backend with SQLite when ready for auth/cart (~$7/month)
+4. **Phase 3:** Migrate to PostgreSQL when scaling up (~$14/month)
+5. **Phase 4:** Add Redis for sessions/caching (optional)
+
+---
+
+## Need Help?
+
+- **Render Docs:** https://render.com/docs
+- **Render Community:** https://community.render.com
+- **This Repo Issues:** https://github.com/JonSvitna/OriesCreations/issues
+
+**You're all set for deployment! 🚀**
