@@ -1,20 +1,43 @@
 {
   "name": "oriescreations",
   "version": "1.0.0",
-  "description": "Artist website with user management/billing/marketing",
+  "description": "Fantasy-themed e-commerce artist website with user management/billing/marketing",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "node src/index.js"
+    "dev": "node src/index.js",
+    "dev:client": "vite --config client/vite.config.js",
+    "build:client": "vite build --config client/vite.config.js",
+    "preview": "vite preview --config client/vite.config.js",
+    "seed": "node src/utils/seed.js"
   },
   "keywords": [
     "artist",
     "website",
-    "portfolio"
+    "portfolio",
+    "fantasy",
+    "ecommerce"
   ],
   "author": "OriesCreations",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "stripe": "^20.0.0",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17",
+    "vite": "^7.2.6"
   }
 }
