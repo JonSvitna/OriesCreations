@@ -327,17 +327,28 @@ function renderHomePage(container) {
 
 async function loadFeaturedProducts() {
   try {
-    const data = await api('/products?featured=true&limit=4');
+    // Try to load featured products first
+    let data = await api('/products?featured=true&limit=4');
     const container = document.getElementById('featured-products');
     
+    // If no featured products, load any recent products instead
     if (data.products.length === 0) {
-      container.innerHTML = '<p class="col-span-full text-center text-gray-400">No featured products yet</p>';
+      console.log('No featured products found, loading recent products instead');
+      data = await api('/products?limit=4&sort=created_at&order=DESC');
+    }
+    
+    if (data.products.length === 0) {
+      container.innerHTML = '<p class="col-span-full text-center text-gray-400">No products available yet</p>';
       return;
     }
     
     container.innerHTML = data.products.map(product => renderProductCard(product)).join('');
   } catch (error) {
     console.error('Error loading featured products:', error);
+    const container = document.getElementById('featured-products');
+    if (container) {
+      container.innerHTML = '<p class="col-span-full text-center text-gray-400">Error loading products</p>';
+    }
   }
 }
 
