@@ -112,16 +112,16 @@ function navigateTo(page, filter = null) {
 function renderHomePage(container) {
   container.innerHTML = `
     <!-- Hero Section - Choose Your Adventure -->
-    <section class="min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-b from-black via-red-950/20 to-black">
+    <section class="min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950">
       <div class="max-w-7xl w-full">
         <div class="text-center mb-16">
-          <h1 class="text-5xl md:text-7xl font-bold mb-6 float" style="font-family: 'Cinzel', serif; color: #d4af37; text-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 80px rgba(139, 0, 0, 0.4);">
+          <h1 class="text-5xl md:text-7xl font-bold mb-6 float" style="font-family: 'Cinzel', serif; color: #d4af37; text-shadow: 0 0 40px rgba(212, 175, 55, 0.4);">
             Choose Your Path
           </h1>
-          <p class="text-xl md:text-2xl mb-4" style="color: #e8e8e8;">
+          <p class="text-xl md:text-2xl mb-4 text-neutral-300">
             Where will your adventure lead you, traveler?
           </p>
-          <div class="flex items-center justify-center gap-4 text-sm text-gray-400">
+          <div class="flex items-center justify-center gap-4 text-sm text-neutral-500">
             <span>⚔️ Original Fantasy Art</span>
             <span>•</span>
             <span>🛡️ Epic Merchandise</span>
@@ -134,25 +134,25 @@ function renderHomePage(container) {
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           <!-- Path 1: The Gallery (Shop) -->
-          <article class="group relative overflow-hidden rounded-lg border-2 border-yellow-600/30 hover:border-yellow-500 transition-all duration-500 cursor-pointer transform hover:scale-105 hover:shadow-2xl hover:shadow-yellow-600/20"
+          <article class="group relative overflow-hidden rounded-lg border-2 border-yellow-600/20 hover:border-yellow-500/60 transition-all duration-500 cursor-pointer transform hover:scale-105 hover:shadow-2xl hover:shadow-yellow-600/10"
                    onclick="navigateTo('shop')"
-                   style="background: linear-gradient(135deg, #1a1a1a 0%, #2a0a0a 100%);">
+                   style="background: linear-gradient(135deg, #171717 0%, #1a1a1a 100%);">
             <div class="aspect-[3/4] relative overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 z-10"></div>
-              <div class="absolute inset-0 bg-red-900/20 group-hover:bg-yellow-600/10 transition-colors duration-500"></div>
+              <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/95 z-10"></div>
+              <div class="absolute inset-0 bg-neutral-900/50 group-hover:bg-yellow-600/5 transition-colors duration-500"></div>
               <!-- Placeholder for image -->
               <div class="absolute inset-0 flex items-center justify-center text-8xl opacity-20 group-hover:opacity-30 transition-opacity">
                 🎨
               </div>
             </div>
             <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
-              <h2 class="text-3xl font-bold mb-3" style="font-family: 'Cinzel', serif; color: #d4af37; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">
+              <h2 class="text-3xl font-bold mb-3" style="font-family: 'Cinzel', serif; color: #d4af37; text-shadow: 0 2px 10px rgba(0,0,0,1);">
                 The Gallery
               </h2>
-              <p class="text-white mb-4 text-shadow-lg" style="text-shadow: 0 2px 8px rgba(0,0,0,0.9);">
+              <p class="text-neutral-200 mb-4 text-shadow-lg" style="text-shadow: 0 2px 8px rgba(0,0,0,1);">
                 Explore original fantasy artwork, premium prints, and legendary merchandise crafted for adventurers.
               </p>
-              <div class="flex items-center text-yellow-400 font-semibold group-hover:translate-x-2 transition-transform">
+              <div class="flex items-center text-yellow-500 font-semibold group-hover:translate-x-2 transition-transform">
                 <span>Enter the Gallery</span>
                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -167,25 +167,25 @@ function renderHomePage(container) {
           </article>
 
           <!-- Path 2: The Commission Hall -->
-          <article class="group relative overflow-hidden rounded-lg border-2 border-red-600/30 hover:border-red-500 transition-all duration-500 cursor-pointer transform hover:scale-105 hover:shadow-2xl hover:shadow-red-600/20"
+          <article class="group relative overflow-hidden rounded-lg border-2 border-red-600/20 hover:border-red-500/60 transition-all duration-500 cursor-pointer transform hover:scale-105 hover:shadow-2xl hover:shadow-red-600/10"
                    onclick="navigateTo('shop', 'Commissions')"
-                   style="background: linear-gradient(135deg, #1a1a1a 0%, #2a0a0a 100%);">
+                   style="background: linear-gradient(135deg, #171717 0%, #1a1a1a 100%);">
             <div class="aspect-[3/4] relative overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 z-10"></div>
-              <div class="absolute inset-0 bg-red-900/30 group-hover:bg-red-600/10 transition-colors duration-500"></div>
+              <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/95 z-10"></div>
+              <div class="absolute inset-0 bg-neutral-900/50 group-hover:bg-red-600/5 transition-colors duration-500"></div>
               <!-- Placeholder for image -->
               <div class="absolute inset-0 flex items-center justify-center text-8xl opacity-20 group-hover:opacity-30 transition-opacity">
                 ⚔️
               </div>
             </div>
             <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
-              <h2 class="text-3xl font-bold mb-3" style="font-family: 'Cinzel', serif; color: #dc2626; text-shadow: 0 2px 10px rgba(0,0,0,0.8), 0 0 20px rgba(220, 38, 38, 0.4);">
+              <h2 class="text-3xl font-bold mb-3" style="font-family: 'Cinzel', serif; color: #dc2626; text-shadow: 0 2px 10px rgba(0,0,0,1);">
                 The Forge
               </h2>
-              <p class="text-white mb-4" style="text-shadow: 0 2px 8px rgba(0,0,0,0.9);">
+              <p class="text-neutral-200 mb-4" style="text-shadow: 0 2px 8px rgba(0,0,0,1);">
                 Commission custom artwork for your D&D character, original creation, or epic vision brought to life.
               </p>
-              <div class="flex items-center text-red-400 font-semibold group-hover:translate-x-2 transition-transform">
+              <div class="flex items-center text-red-500 font-semibold group-hover:translate-x-2 transition-transform">
                 <span>Request a Commission</span>
                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -200,25 +200,25 @@ function renderHomePage(container) {
           </article>
 
           <!-- Path 3: The Guild Hall (Membership) -->
-          <article class="group relative overflow-hidden rounded-lg border-2 border-white/30 hover:border-white transition-all duration-500 cursor-pointer transform hover:scale-105 hover:shadow-2xl hover:shadow-white/20"
+          <article class="group relative overflow-hidden rounded-lg border-2 border-neutral-500/20 hover:border-neutral-400/60 transition-all duration-500 cursor-pointer transform hover:scale-105 hover:shadow-2xl hover:shadow-neutral-400/10"
                    onclick="navigateTo('membership')"
-                   style="background: linear-gradient(135deg, #1a1a1a 0%, #0a0a2a 100%);">
+                   style="background: linear-gradient(135deg, #171717 0%, #1a1a1a 100%);">
             <div class="aspect-[3/4] relative overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 z-10"></div>
-              <div class="absolute inset-0 bg-purple-900/20 group-hover:bg-white/10 transition-colors duration-500"></div>
+              <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/95 z-10"></div>
+              <div class="absolute inset-0 bg-neutral-900/50 group-hover:bg-neutral-700/5 transition-colors duration-500"></div>
               <!-- Placeholder for image -->
               <div class="absolute inset-0 flex items-center justify-center text-8xl opacity-20 group-hover:opacity-30 transition-opacity">
                 👑
               </div>
             </div>
             <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
-              <h2 class="text-3xl font-bold mb-3" style="font-family: 'Cinzel', serif; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.8), 0 0 20px rgba(255, 255, 255, 0.3);">
+              <h2 class="text-3xl font-bold mb-3" style="font-family: 'Cinzel', serif; color: #e5e5e5; text-shadow: 0 2px 10px rgba(0,0,0,1);">
                 The Guild
               </h2>
-              <p class="text-white mb-4" style="text-shadow: 0 2px 8px rgba(0,0,0,0.9);">
+              <p class="text-neutral-200 mb-4" style="text-shadow: 0 2px 8px rgba(0,0,0,1);">
                 Join the patron's guild for exclusive artwork, early access, special discounts, and behind-the-scenes content.
               </p>
-              <div class="flex items-center text-white font-semibold group-hover:translate-x-2 transition-transform">
+              <div class="flex items-center text-neutral-300 font-semibold group-hover:translate-x-2 transition-transform">
                 <span>Join the Guild</span>
                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
