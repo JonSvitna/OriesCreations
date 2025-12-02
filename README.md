@@ -7,7 +7,6 @@ Artist website with user management/billing/marketing
 ### Prerequisites
 
 - Node.js 18 or higher
-- PostgreSQL (for production)
 
 ### Local Development
 
@@ -34,28 +33,42 @@ Artist website with user management/billing/marketing
 
 This project includes a `render.yaml` Blueprint Specification for easy deployment on [Render](https://render.com/).
 
-### Deploy with Render Blueprint
+### Free Static Site Deployment (Current Configuration)
+
+The current `render.yaml` is configured for **free static site hosting**. This deploys only the frontend as static files.
+
+**Note:** Static site deployment does not include backend functionality. Features like user authentication, cart, payments, and database operations will not work. This is ideal for:
+- Portfolio/showcase websites
+- Landing pages
+- Static content display
+
+#### Deploy as Static Site
 
 1. Fork this repository to your GitHub account
 2. Go to [Render Dashboard](https://dashboard.render.com/)
 3. Click "New" → "Blueprint"
 4. Connect your GitHub repository
-5. Render will automatically detect `render.yaml` and configure your services
+5. Render will automatically detect `render.yaml` and deploy a free static site
 
-### Services Created
+### Full-Stack Deployment (Paid)
 
-- **Web Service**: Node.js application serving the website
-- **PostgreSQL Database**: Database for user management and billing data
+If you need full backend functionality (authentication, payments, cart, etc.), you'll need to use Render's paid Web Service tier. Create a `render.yaml` with:
 
-### Environment Variables
+```yaml
+services:
+  - type: web
+    name: oriescreations-web
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+```
 
-The following environment variables are configured automatically:
-
-| Variable | Description |
-|----------|-------------|
-| `NODE_ENV` | Set to `production` |
-| `DATABASE_URL` | PostgreSQL connection string (auto-configured) |
-| `SESSION_SECRET` | Randomly generated secret for sessions |
+**Note:** Web Services on Render are paid services. See [Render Pricing](https://render.com/pricing) for details.
 
 ## License
 
