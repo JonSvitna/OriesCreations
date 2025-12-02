@@ -17,6 +17,9 @@ const paymentRoutes = require('./routes/payments');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Trust proxy for rate limiting (needed for production and dev containers)
+app.set('trust proxy', 1);
+
 // Initialize database
 initializeDatabase();
 
