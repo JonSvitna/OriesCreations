@@ -198,7 +198,96 @@ async function seedDatabase() {
     }
   }
 
-  console.log('🎉 Database seeding complete!');
+  // Import scraped products from Wix site
+  console.log('\n📦 Importing products from Wix shop...');
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const productsFile = path.join(__dirname, '..', '..', 'scripts', 'products.json');
+    
+    if (fs.existsSync(productsFile)) {
+      const scrapedProducts = JSON.parse(fs.readFileSync(productsFile, 'utf8'));
+      
+      // Price mapping for scraped products
+      const priceMapping = {
+        'Ories AirPods Case Cover - Cute AirPods Pro Holder': 16.10,
+        'Kiss-Cut Stickers': 2.63,
+        'Gen Frosted Glass Beer Mug': 34.83,
+        'Cosmic insect Magnets': 8.05,
+        'The Poison Vendor Classic Canvas': 22.15,
+        'Alex Tough Phone Cases': 23.60,
+        'Desk Mat': 18.78,
+        'Void Kiss-Cut Stickers': 2.63,
+        'Ories Heavy Blend™ Hooded Sweatshirt': 50.00,
+        'Bloom  The Nature spirit': 200.00,
+        'Bloom The Nature spirit': 200.00,
+        'Reo The Bee': 20.00,
+        'Janus': 40.00,
+        'Mjolnir': 10.00,
+        'Nothing': 10.00,
+        'Wolverine': 15.00,
+        'Cosmic centipede': 15.00,
+        'Forget Me Not': 25.00,
+        'The Time Walker': 30.00,
+        'Void:  The blue eyed Devil': 35.00,
+        'gear 5 luffy': 20.00,
+      };
+
+      // Category mapping
+      const categoryMapping = {
+        'Bloom': 'Original Art',
+        'Reo': 'Original Art',
+        'Janus': 'Original Art',
+        'Mjolnir': 'Original Art',
+        'Nothing': 'Original Art',
+      };
+
+      const insertStmt = db.prepare(`
+        INSERT OR IGNORE INTO products (
+          name, description, price, category, image_url, 
+          inventory_count, featured
+        ) VALUES (?, ?, ?, ?, ?, ?, ?)
+      `);
+
+      let imported = 0;
+      for (const product of scrapedProducts) {
+        const price = priceMapping[product.name];
+        if (!price) continue;
+
+        // Determine category
+        let category = 'Prints & Merchandise';
+        for (const [keyword, cat] of Object.entries(categoryMapping)) {
+          if (product.name.includes(keyword)) {
+            category = cat;
+            break;
+          }
+        }
+
+        const isOneOfKind = category === 'Original Art';
+        const inventory = isOneOfKind ? 1 : 10;
+        const featured = isOneOfKind ? 1 : 0;
+
+        const description = `${product.name} - A unique creation from Ories's Creations. ${
+          isOneOfKind ? 'This is a one-of-a-kind piece, no two are ever the same.' : 
+          'Available for purchase while supplies last.'
+        }`;
+
+        try {
+          insertStmt.run(product.name, description, price, category, product.localImage, inventory, featured);
+          imported++;
+        } catch (e) {
+          // Product already exists, skip
+        }
+      }
+      console.log(`✓ Imported ${imported} products from Wix shop`);
+    } else {
+      console.log('⚠️  No scraped products file found, skipping import');
+    }
+  } catch (e) {
+    console.error('Error importing scraped products:', e.message);
+  }
+
+  console.log('\n🎉 Database seeding complete!');
   console.log('\nTest accounts:');
   console.log('  Admin: admin@oriescreations.com / admin123');
   console.log('  User: demo@example.com / user1234');
