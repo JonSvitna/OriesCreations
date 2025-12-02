@@ -83,8 +83,15 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Serve SPA for all other routes
-app.get('/{*path}', (req, res) => {
+// Serve SPA for all other routes (with rate limiting)
+const staticLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 200, // Higher limit for static file serving
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+app.get('/{*path}', staticLimiter, (req, res) => {
   // First try client dist, then fall back to public
   const clientPath = path.join(__dirname, '..', 'client', 'dist', 'index.html');
   const publicPath = path.join(__dirname, '..', 'public', 'index.html');
