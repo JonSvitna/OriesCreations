@@ -1,3 +1,6 @@
+/* Fantasy Fonts - Must be first */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
 /* Custom Fantasy Theme Styles */
 :root {
   --fantasy-gold: #d4af37;
@@ -8,9 +11,6 @@
   --fantasy-purple: #4a0e4e;
   --fantasy-crimson: #8b0000;
 }
-
-/* Fantasy Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 body {
   font-family: 'Lora', serif;
