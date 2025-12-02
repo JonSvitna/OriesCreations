@@ -99,9 +99,8 @@ const staticLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-// Catch-all route for SPA (must be last)
-app.use(staticLimiter);
-app.get('/*', (req, res) => {
+// Catch-all middleware for SPA (must be last)
+app.use(staticLimiter, (req, res) => {
   // First try client dist, then fall back to public
   const clientPath = path.join(__dirname, '..', 'client', 'dist', 'index.html');
   const publicPath = path.join(__dirname, '..', 'public', 'index.html');
