@@ -119,7 +119,7 @@ function renderHomePage(container) {
             Ories's Creations
           </h1>
           <p class="text-xl md:text-2xl mb-4 text-neutral-300">
-            Welcome! I make one of a kind art, no two creations are the same
+            Where every piece tells its own story—no two creations are ever the same
           </p>
           <div class="flex items-center justify-center gap-4 text-sm text-neutral-500">
             <span>⚔️ Original Fantasy Art</span>
@@ -153,7 +153,7 @@ function renderHomePage(container) {
                 Explore unique art including Altia, The Forest, Cosmic Insects, and fan art. Each piece is one-of-a-kind.
               </p>
               <div class="flex items-center text-yellow-500 font-semibold group-hover:translate-x-2 transition-transform">
-                <span>Enter the Gallery</span>
+                <span>Explore the Portfolio</span>
                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                 </svg>
@@ -186,7 +186,7 @@ function renderHomePage(container) {
                 Commission unique, one-of-a-kind artwork. Bring your characters, stories, and visions to life.
               </p>
               <div class="flex items-center text-red-500 font-semibold group-hover:translate-x-2 transition-transform">
-                <span>Request a Commission</span>
+                <span>Start Your Commission</span>
                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                 </svg>
@@ -213,13 +213,13 @@ function renderHomePage(container) {
             </div>
             <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
               <h2 class="text-3xl font-bold mb-3" style="font-family: 'Cinzel', serif; color: #e5e5e5; text-shadow: 0 2px 10px rgba(0,0,0,1);">
-                Shop
+                The Collection
               </h2>
               <p class="text-neutral-200 mb-4" style="text-shadow: 0 2px 8px rgba(0,0,0,1);">
-                Browse available art pieces and prints. Support the creation of more one-of-a-kind artwork.
+                Discover art pieces ready to find their forever home. Prints, originals, and more treasures await.
               </p>
               <div class="flex items-center text-neutral-300 font-semibold group-hover:translate-x-2 transition-transform">
-                <span>Join the Guild</span>
+                <span>See the Collection</span>
                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                 </svg>
@@ -290,12 +290,12 @@ function renderHomePage(container) {
     <section class="py-20 px-4">
       <div class="max-w-4xl mx-auto text-center">
         <div class="card-fantasy p-12 glow">
-          <h2 class="text-3xl md:text-4xl mb-6">Join the Guild</h2>
+          <h2 class="text-3xl md:text-4xl mb-6">Join the Inner Circle</h2>
           <p class="text-xl text-gray-300 mb-8">
-            Become a patron and unlock exclusive content, discounts, and more!
+            Get early access to new creations, exclusive behind-the-scenes content, and special perks!
           </p>
           <button onclick="navigateTo('membership')" class="btn-fantasy text-lg">
-            View Membership Tiers
+            Explore Membership
           </button>
         </div>
       </div>
@@ -896,9 +896,9 @@ async function renderMembershipPage(container) {
   container.innerHTML = `
     <section class="py-12 px-4">
       <div class="max-w-6xl mx-auto">
-        <h1 class="text-4xl text-center mb-4">Join the Guild</h1>
+        <h1 class="text-4xl text-center mb-4">Join the Inner Circle</h1>
         <p class="text-center text-gray-300 mb-12 max-w-2xl mx-auto">
-          Become a patron and unlock exclusive content, discounts, and early access to new creations.
+          Get exclusive access to new creations, behind-the-scenes content, and special perks as part of the community.
         </p>
         
         ${currentMembership ? `
